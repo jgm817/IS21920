@@ -1,45 +1,47 @@
 package es.unican.is2.model.states;
 
+import es.unican.is2.model.AlarmaHogar;
+
 public class ApagadaState extends StateAlarma {
 
 	@Override
-	public void alarmaOn() {
+	public void alarmaOn(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void alarmaOff(int codigoIntroduccido) {
+	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void intruso() {
+	public void intruso(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void off() {
+	public void off(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void entryAction() {
+	public void entryAction(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void exitAction() {
+	public void exitAction(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 
 	}
