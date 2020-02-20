@@ -10,13 +10,21 @@ public class AlarmaHogar {
 	private Piloto piloto;
 	private StateAlarma state;
 	
-	public AlarmaHogar() {
+	public AlarmaHogar(int pass, int intervaloSalida, int intervaloDesactivacion) {
 		state = StateAlarma.init(this);
 		piloto = new Piloto();
+		errores = 0;
+		codigoDesactivacion = pass;
+		this.intervaloDesactivacion = intervaloDesactivacion;
+		this.intervaloSalida = intervaloSalida;
 	}
 	
 	public void setState(StateAlarma valor) {
 		state = valor;
+	}
+	
+	public StateAlarma getState() {
+		return state;
 	}
 	
 	public void notificarCentralita() {

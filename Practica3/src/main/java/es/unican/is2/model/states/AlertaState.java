@@ -16,20 +16,22 @@ public class AlertaState extends StateAlarma {
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
-		if(context.coincideCodigo(codigoIntroduccido)==true) {
+		if(context.coincideCodigo(codigoIntroduccido)) {
 			context.desactivarSensores();
 			this.exitAction(context);
+			timer.cancel();
 			context.setState(apagada);
 			apagada.entryAction(context);
 		}
 		
-		if(context.coincideCodigo(codigoIntroduccido)==false && 
+		if(!context.coincideCodigo(codigoIntroduccido)&& 
 				context.getErrores()<3) {
 			context.addError();
 		}
 		
-		if(context.coincideCodigo(codigoIntroduccido)==false && context.getErrores()>=3) {
+		if(!context.coincideCodigo(codigoIntroduccido)&& context.getErrores()>=3) {
 			context.resetErrores();
+			timer.cancel();
 			this.exitAction(context);
 			context.setState(centralitaAvisada);
 			centralitaAvisada.entryAction(context);
@@ -38,12 +40,10 @@ public class AlertaState extends StateAlarma {
 	}
 
 	@Override
-	public void intruso(AlarmaHogar context) {
-	}
+	public void intruso(AlarmaHogar context) {}
 
 	@Override
-	public void off(AlarmaHogar context) {
-	}
+	public void off(AlarmaHogar context) {}
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
@@ -53,13 +53,10 @@ public class AlertaState extends StateAlarma {
 	}
 
 	@Override
-	public void exitAction(AlarmaHogar context) {
-	}
+	public void exitAction(AlarmaHogar context) {}
 
 	@Override
-	public void doAction(AlarmaHogar context) {
-
-	}
+	public void doAction(AlarmaHogar context) {}
 
 	public class AlertaTask extends TimerTask {
 

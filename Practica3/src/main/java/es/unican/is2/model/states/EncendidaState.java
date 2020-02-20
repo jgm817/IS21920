@@ -5,16 +5,10 @@ import es.unican.is2.model.AlarmaHogar;
 public class EncendidaState extends StateAlarma {
 
 	@Override
-	public void alarmaOn(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void alarmaOn(AlarmaHogar context) {}
 
 	@Override
-	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {}
 
 	@Override
 	public void intruso(AlarmaHogar context) {
@@ -25,28 +19,17 @@ public class EncendidaState extends StateAlarma {
 	}
 
 	@Override
-	public void off(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-		
-		
-	}
+	public void off(AlarmaHogar context) {}
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
 		context.getPiloto().encender();
-		
 	}
 
 	@Override
-	public void exitAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void exitAction(AlarmaHogar context) {}
 
 	@Override
-	public void doAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void doAction(AlarmaHogar context) {}
 
 }

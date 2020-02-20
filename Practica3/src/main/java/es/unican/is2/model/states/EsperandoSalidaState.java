@@ -11,9 +11,7 @@ public class EsperandoSalidaState extends StateAlarma {
 	private AlarmaSaliendoTask temporizador;
 	
 	@Override
-	public void alarmaOn(AlarmaHogar context) {
-		
-	}
+	public void alarmaOn(AlarmaHogar context) {}
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
@@ -27,16 +25,10 @@ public class EsperandoSalidaState extends StateAlarma {
 	}
 
 	@Override
-	public void intruso(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
-	}
+	public void intruso(AlarmaHogar context) {}
 
 	@Override
-	public void off(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
-	}
+	public void off(AlarmaHogar context) {}
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
@@ -46,16 +38,10 @@ public class EsperandoSalidaState extends StateAlarma {
 	}
 
 	@Override
-	public void exitAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
-	}
+	public void exitAction(AlarmaHogar context) {}
 
 	@Override
-	public void doAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void doAction(AlarmaHogar context) {}
 	
 	public class AlarmaSaliendoTask extends TimerTask {
 
