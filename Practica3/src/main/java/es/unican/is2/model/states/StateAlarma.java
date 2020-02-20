@@ -4,11 +4,11 @@ import es.unican.is2.model.AlarmaHogar;
 
 public abstract class StateAlarma {
 	
-	private static ApagadaState apagada = new ApagadaState();
-	private static EncendidaState encendida = new EncendidaState();
-	private static AlertaState alerta = new AlertaState();
-	private static CentralitaAvisadaState centralitaAvisada = new CentralitaAvisadaState();
-	private static EsperandoSalidaState esperando = new EsperandoSalidaState();
+	protected static ApagadaState apagada = new ApagadaState();
+	protected static EncendidaState encendida = new EncendidaState();
+	protected static AlertaState alerta = new AlertaState();
+	protected static CentralitaAvisadaState centralitaAvisada = new CentralitaAvisadaState();
+	protected static EsperandoSalidaState esperando = new EsperandoSalidaState();
 	
 	
 	public static StateAlarma init(AlarmaHogar context) {

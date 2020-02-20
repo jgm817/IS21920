@@ -29,6 +29,26 @@ public class AlarmaHogar {
 		
 	}
 	
+	public int getIntervaloSalida() {
+		return intervaloSalida;
+	}
+	
+	public int getIntervaloDesactivacion() {
+		return intervaloDesactivacion;
+	}
+	
+	public int getErrores() {
+		return errores;
+	}
+	
+	public void addError() {
+		errores++;
+	}
+	
+	public void resetErrores() {
+		errores = 0;
+	}
+	
 	public boolean coincideCodigo(int codigo) {
 		return codigoDesactivacion == codigo;
 	}
