@@ -6,43 +6,39 @@ public class CentralitaAvisadaState extends StateAlarma {
 
 	@Override
 	public void alarmaOn(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
-		// TODO Auto-generated method stub
+		this.exitAction(context);
+		context.setState(apagada);
+		apagada.entryAction(context);
 
 	}
 
 	@Override
 	public void intruso(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void off(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void exitAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void doAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
