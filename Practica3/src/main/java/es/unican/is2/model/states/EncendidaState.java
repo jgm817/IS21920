@@ -12,7 +12,9 @@ public class EncendidaState extends StateAlarma {
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
-		// TODO Auto-generated method stub
+		if(context.coincideCodigo(codigoIntroduccido)) {
+			
+		}
 		
 	}
 
