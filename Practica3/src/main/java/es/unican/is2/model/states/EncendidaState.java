@@ -18,8 +18,10 @@ public class EncendidaState extends StateAlarma {
 
 	@Override
 	public void intruso(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-		
+		exitAction(context);
+		context.setState(alerta);
+		alerta.entryAction(context);
+		alerta.doAction(context);
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class EncendidaState extends StateAlarma {
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
+		context.getPiloto().encender();
 		
 	}
 

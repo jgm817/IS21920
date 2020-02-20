@@ -7,10 +7,12 @@ public class AlarmaHogar {
 	private int intervaloDesactivacion;
 	private int codigoDesactivacion;
 	private int errores;
+	private Piloto piloto;
 	private StateAlarma state;
 	
 	public AlarmaHogar() {
 		state = StateAlarma.init(this);
+		piloto = new Piloto();
 	}
 	
 	public void setState(StateAlarma valor) {
@@ -53,4 +55,7 @@ public class AlarmaHogar {
 		return codigoDesactivacion == codigo;
 	}
 	
+	public Piloto getPiloto() {
+		return piloto;
+	}
 }

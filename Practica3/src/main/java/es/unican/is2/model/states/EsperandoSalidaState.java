@@ -12,15 +12,17 @@ public class EsperandoSalidaState extends StateAlarma {
 	
 	@Override
 	public void alarmaOn(AlarmaHogar context) {
-		temporizador = new AlarmaSaliendoTask(context);
-		timer.schedule(temporizador, context.getIntervaloSalida());
+		
 	}
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
 		if(context.coincideCodigo(codigoIntroduccido)) {
 			this.exitAction(context);
-			
+			timer.cancel();
+			context.setState(apagada);
+			apagada.entryAction(context);
+			apagada.doAction(context);
 		}
 	}
 
@@ -38,8 +40,9 @@ public class EsperandoSalidaState extends StateAlarma {
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
+		temporizador = new AlarmaSaliendoTask(context);
+		timer.schedule(temporizador, context.getIntervaloSalida());
+		context.getPiloto().parpadear();
 	}
 
 	@Override
