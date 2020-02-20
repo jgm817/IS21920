@@ -1,49 +1,78 @@
 package es.unican.is2.model.states;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import es.unican.is2.model.AlarmaHogar;
 
 public class AlertaState extends StateAlarma {
 
+	public AlertaTask alertaTask;
+	public Timer timer;
+	
 	@Override
 	public void alarmaOn(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
-		// TODO Auto-generated method stub
+		if(context.coincideCodigo(codigoIntroduccido)==true) {
+			context.desactivarSensores();
+			this.exitAction(context);
+			context.setState(apagada);
+			apagada.entryAction(context);
+		}
+		
+		if(context.coincideCodigo(codigoIntroduccido)==false && 
+				context.getErrores()<3) {
+			context.addError();
+		}
+		
+		if(context.coincideCodigo(codigoIntroduccido)==false && context.getErrores()>=3) {
+			context.resetErrores();
+			this.exitAction(context);
+			context.setState(centralitaAvisada);
+			centralitaAvisada.entryAction(context);
+		}
 
 	}
 
 	@Override
 	public void intruso(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void off(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
+		alertaTask = new AlertaTask(context);
+		timer.schedule(alertaTask, 300000);
 
 	}
 
 	@Override
 	public void exitAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void doAction(AlarmaHogar context) {
-		// TODO Auto-generated method stub
 
 	}
 
+	public class AlertaTask extends TimerTask {
+
+		private AlarmaHogar context;
+		
+		public AlertaTask(AlarmaHogar context) {
+			this.context=context;
+		}
+		
+		public void run() {
+			context.setState(centralitaAvisada);
+			centralitaAvisada.entryAction(context);
+		}
+		
+	}
 }
