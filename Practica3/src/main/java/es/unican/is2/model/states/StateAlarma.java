@@ -1,4 +1,4 @@
-package es.unican.is2.model;
+package es.unican.is2.model.states;
 
 public abstract class StateAlarma {
 	
