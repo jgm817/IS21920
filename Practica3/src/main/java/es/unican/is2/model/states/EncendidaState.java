@@ -28,6 +28,7 @@ public class EncendidaState extends StateAlarma {
 	public void off(AlarmaHogar context) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override
