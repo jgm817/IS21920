@@ -17,7 +17,7 @@ public abstract class StateAlarma {
 	}
 	
 	public abstract void alarmaOn(AlarmaHogar context);
-	public abstract void alarmaOff(AlarmaHogar context, int codigoIntroduccido);
+	public abstract void alarmaOff(AlarmaHogar context, String codigoIntroduccido);
 	public abstract void intruso(AlarmaHogar context);
 	public abstract void off(AlarmaHogar context);
 	

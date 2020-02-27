@@ -11,7 +11,7 @@ public class ApagadaState extends StateAlarma {
 	}
 
 	@Override
-	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {}
+	public void alarmaOff(AlarmaHogar context, String codigoIntroduccido) {}
 
 	@Override
 	public void intruso(AlarmaHogar context) {}

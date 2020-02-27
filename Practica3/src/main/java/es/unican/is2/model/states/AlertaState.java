@@ -15,11 +15,11 @@ public class AlertaState extends StateAlarma {
 	}
 
 	@Override
-	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
+	public void alarmaOff(AlarmaHogar context, String codigoIntroduccido) {
 		if(context.coincideCodigo(codigoIntroduccido)) {
 			context.desactivarSensores();
 			this.exitAction(context);
-			timer.cancel();
+			alertaTask.cancel();
 			context.setState(apagada);
 			apagada.entryAction(context);
 		}
@@ -49,7 +49,6 @@ public class AlertaState extends StateAlarma {
 	public void entryAction(AlarmaHogar context) {
 		alertaTask = new AlertaTask(context);
 		timer.schedule(alertaTask, 300000);
-
 	}
 
 	@Override

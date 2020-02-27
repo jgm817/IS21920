@@ -14,10 +14,10 @@ public class EsperandoSalidaState extends StateAlarma {
 	public void alarmaOn(AlarmaHogar context) {}
 
 	@Override
-	public void alarmaOff(AlarmaHogar context, int codigoIntroduccido) {
+	public void alarmaOff(AlarmaHogar context, String codigoIntroduccido) {
 		if(context.coincideCodigo(codigoIntroduccido)) {
 			this.exitAction(context);
-			timer.cancel();
+			temporizador.cancel();
 			context.setState(apagada);
 			apagada.entryAction(context);
 			apagada.doAction(context);
