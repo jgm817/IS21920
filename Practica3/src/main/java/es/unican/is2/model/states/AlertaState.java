@@ -7,8 +7,9 @@ import es.unican.is2.model.AlarmaHogar;
 
 public class AlertaState extends StateAlarma {
 
+	
 	public AlertaTask alertaTask;
-	public Timer timer;
+	public Timer timer = new Timer();
 	
 	@Override
 	public void alarmaOn(AlarmaHogar context) {
@@ -23,15 +24,13 @@ public class AlertaState extends StateAlarma {
 			context.setState(apagada);
 			apagada.entryAction(context);
 		}
-		
-		if(!context.coincideCodigo(codigoIntroduccido)&& 
-				context.getErrores()<3) {
+		else if(!context.coincideCodigo(codigoIntroduccido)&& 
+				context.getErrores()<2) {
 			context.addError();
 		}
-		
-		if(!context.coincideCodigo(codigoIntroduccido)&& context.getErrores()>=3) {
+		else if(!context.coincideCodigo(codigoIntroduccido)&& context.getErrores()>=2) {
 			context.resetErrores();
-			timer.cancel();
+			alertaTask.cancel();
 			this.exitAction(context);
 			context.setState(centralitaAvisada);
 			centralitaAvisada.entryAction(context);
@@ -48,7 +47,7 @@ public class AlertaState extends StateAlarma {
 	@Override
 	public void entryAction(AlarmaHogar context) {
 		alertaTask = new AlertaTask(context);
-		timer.schedule(alertaTask, 300000);
+		timer.schedule(alertaTask, context.getIntervaloDesactivacion());
 	}
 
 	@Override
@@ -66,8 +65,10 @@ public class AlertaState extends StateAlarma {
 		}
 		
 		public void run() {
+			exitAction(context);
 			context.setState(centralitaAvisada);
 			centralitaAvisada.entryAction(context);
+			centralitaAvisada.doAction(context);
 		}
 		
 	}
