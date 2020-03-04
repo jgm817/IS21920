@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JEditorPane;
@@ -24,17 +26,17 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 	private JButton botonAlarmaOn;
 	private JButton botonAlarmaOff;
 	private JEditorPane piloto;
-	/**
-	 * Launch the application.
-	 */
+	private Timer timer;
+	private ParpadeandoTask parpadeando;
 
 
 	public Alarma(Piloto p) {
 		p.addPropertyChangeListener(this);
 		codigo = "";
 		init();
+		timer = new Timer();
 	}
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -171,7 +173,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		piloto.setBounds(341, 43, 224, 81);
 		PanelAlarma.add(piloto);
 
-		JButton botonReseteo = new JButton("Resetear Alarma");
+		JButton botonReseteo = new JButton("Resetear codigo");
 		botonReseteo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		botonReseteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -194,22 +196,40 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals("pilotoOn")) {
+			parpadeando.cancel();
 			piloto.setVisible(true);
 			piloto.setBackground(Color.GREEN);
 		}else if(evt.getPropertyName().equals("pilotoOff")) {
+			parpadeando.cancel();
 			piloto.setVisible(false);
 		}else if(evt.getPropertyName().equals("pilotoParpadeando")) {
-			piloto.setVisible(true);
 			piloto.setBackground(Color.YELLOW);
+			parpadeando = new ParpadeandoTask();
+			timer.schedule(parpadeando, 0,1000);
 		}
 	}
 
 	public String getCodigo() {
 		return codigo;
 	}
-	
+
 	public void resetCodigo() {
 		codigo = "";
+	}
+
+	public class ParpadeandoTask extends TimerTask{
+		@Override
+		public void run() {
+			try {
+				piloto.setVisible(true);
+				Thread.sleep(500);
+				piloto.setVisible(false);
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 

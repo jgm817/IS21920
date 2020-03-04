@@ -11,7 +11,10 @@ import es.unican.is2.view.SimuladorEventos;
 public class Main {
 
 	public static void main(String[] args) {
-		AlarmaHogar modelo = new AlarmaHogar("1234", 5000, 5000);
+		String codigo = "1234";
+		int tiempoSalida = 5000;
+		int tiempoDesactivacion =30000;
+		AlarmaHogar modelo = new AlarmaHogar(codigo, tiempoSalida, tiempoDesactivacion);
 		Alarma vista = new Alarma(modelo.getPiloto());
 		SimuladorEventos vistaEventos = new SimuladorEventos();
 

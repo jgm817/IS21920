@@ -11,11 +11,7 @@ public class CentralitaAvisadaState extends StateAlarma {
 
 	@Override
 	public void alarmaOff(AlarmaHogar context, String codigoIntroduccido) {
-		this.exitAction(context);
-		context.desactivarSensores();
-		context.setState(apagada);
-		apagada.entryAction(context);
-
+		
 	}
 
 	@Override
@@ -25,12 +21,15 @@ public class CentralitaAvisadaState extends StateAlarma {
 
 	@Override
 	public void off(AlarmaHogar context) {
-
+		this.exitAction(context);
+		context.desactivarSensores();
+		context.setState(apagada);
+		apagada.entryAction(context);
 	}
 
 	@Override
 	public void entryAction(AlarmaHogar context) {
-
+		System.out.println("Centralita avisada");
 	}
 
 	@Override
