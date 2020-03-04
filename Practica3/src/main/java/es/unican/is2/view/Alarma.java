@@ -1,6 +1,7 @@
 package es.unican.is2.view;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -26,6 +27,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 	private JButton botonAlarmaOn;
 	private JButton botonAlarmaOff;
 	private JEditorPane piloto;
+	private JLabel pass;
 	private Timer timer;
 	private ParpadeandoTask parpadeando;
 
@@ -58,7 +60,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="1";
-				System.out.println(codigo);
+				pass.setText(codigo);
 
 			}
 		});
@@ -70,7 +72,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="2";
-				System.out.println(codigo);
+				pass.setText(codigo);
 			}
 		});
 		boton2.setBounds(127, 43, 85, 80);
@@ -81,7 +83,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="3";
-				System.out.println(codigo);
+				pass.setText(codigo);
 
 			}
 		});
@@ -93,7 +95,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="4";
-				System.out.println(codigo);
+				pass.setText(codigo);
 
 			}
 		});
@@ -105,7 +107,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="5";
-				System.out.println(codigo);
+				pass.setText(codigo);
 
 			}
 		});
@@ -117,7 +119,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="6";
-				System.out.println(codigo);
+				pass.setText(codigo);
 			}
 		});
 		boton6.setBounds(222, 133, 85, 80);
@@ -128,7 +130,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="7";
-				System.out.println(codigo);
+				pass.setText(codigo);
 			}
 		});
 		boton7.setBounds(32, 223, 85, 80);
@@ -139,7 +141,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="8";
-				System.out.println(codigo);
+				pass.setText(codigo);
 			}
 		});
 		boton8.setBounds(127, 223, 85, 80);
@@ -150,7 +152,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		boton9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				codigo+="9";
-				System.out.println(codigo);
+				pass.setText(codigo);
 			}
 		});
 		boton9.setBounds(222, 223, 85, 80);
@@ -166,6 +168,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		botonAlarmaOff.setBounds(341, 249, 224, 40);
 		PanelAlarma.add(botonAlarmaOff);
 
+		
 
 		piloto = new JEditorPane();
 		piloto.setBackground(Color.GREEN);
@@ -177,13 +180,15 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		botonReseteo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		botonReseteo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				codigo="";
-				System.out.println(codigo);
-
+				resetCodigo();
 			}
 		});
 		botonReseteo.setBounds(341, 150, 224, 40);
 		PanelAlarma.add(botonReseteo);
+		
+		pass= new JLabel("");
+		pass.setBounds(127, 18, 85, 14);
+		PanelAlarma.add(pass);
 	}
 
 	public void setAlarmaOnAction(Action action) {
@@ -215,6 +220,7 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 
 	public void resetCodigo() {
 		codigo = "";
+		pass.setText(codigo);
 	}
 
 	public class ParpadeandoTask extends TimerTask{
@@ -231,7 +237,4 @@ public class Alarma extends JFrame implements PropertyChangeListener{
 		}
 
 	}
-
-
-
 }
