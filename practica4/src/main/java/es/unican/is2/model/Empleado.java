@@ -1,22 +1,22 @@
 package es.unican.is2.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Empleado {
+public class Empleado{
 
 	private Categoria tipoEmpleado;
 	private String nombre;
-	private Date fechaContratacion;
+	private LocalDate fechaContratacion;
 	private boolean baja;
 	
-	public Empleado(Categoria tipoEmpleado, String nombre, Date fechaContratacion, boolean baja) {
+	public Empleado(Categoria tipoEmpleado, String nombre, LocalDate fechaContratacion) {
 		this.tipoEmpleado=tipoEmpleado;
 		this.nombre=nombre;
 		this.fechaContratacion=fechaContratacion;
-		this.baja=baja;
+		this.baja=false;
 	}
 	
-	public double sueldoBruto(Date antiguedad, boolean baja) {
+	public double sueldoBruto() {
 		double sueldoFinal=0;
 		
 		
@@ -30,6 +30,10 @@ public class Empleado {
 	
 	public void darDeBaja(){
 		this.baja=true;
+	}
+	
+	public boolean estaEnBaja() {
+		return baja;
 	}
 
 	
