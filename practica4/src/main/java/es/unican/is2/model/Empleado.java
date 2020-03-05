@@ -2,7 +2,7 @@ package es.unican.is2.model;
 
 import java.time.LocalDate;
 
-public class Empleado {
+public class Empleado{
 
 	private Categoria tipoEmpleado;
 	private String nombre;
@@ -53,6 +53,10 @@ public class Empleado {
 	
 	public void darDeBaja(){
 		this.baja=true;
+	}
+	
+	public boolean estaEnBaja() {
+		return baja;
 	}
 
 	
