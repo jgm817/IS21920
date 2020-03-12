@@ -1,6 +1,8 @@
 package es.unican.is2.model;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class Empleado{
 
@@ -9,11 +11,28 @@ public class Empleado{
 	private LocalDate fechaContratacion;
 	private boolean baja;
 	
-	public Empleado(Categoria tipoEmpleado, String nombre, LocalDate fechaContratacion) {
+	public class FechaIncorrectaException extends Exception{}
+	
+	public Empleado(Categoria tipoEmpleado, String nombre, LocalDate fechaContratacion) throws FechaIncorrectaException {
 		this.tipoEmpleado=tipoEmpleado;
+		if(tipoEmpleado==null) {
+			throw new NullPointerException();
+		}
 		this.nombre=nombre;
 		this.fechaContratacion=fechaContratacion;
+		
+		LocalDate today = LocalDate.now();
+		if(fechaContratacion.isAfter(today)) {
+			throw new FechaIncorrectaException();
+		}
+		
+		if(fechaContratacion.equals(null)) {
+			throw new NullPointerException();
+		}
+		
 		this.baja=false;
+	
+		
 	}
 	
 	public double sueldoBruto() {
@@ -33,12 +52,12 @@ public class Empleado{
 			sueldoFinal+=50;
 		}
 		
-		else if(fechaContratacion.minusYears(5).getYear()>0) {
+		else if(fechaContratacion.minusYears(10).getYear()>0) {
 			sueldoFinal+=100;
 
 		}
 		
-		else if(fechaContratacion.minusYears(5).getYear()>0) {
+		else if(fechaContratacion.minusYears(20).getYear()>0) {
 			sueldoFinal+=200;
 
 		}
