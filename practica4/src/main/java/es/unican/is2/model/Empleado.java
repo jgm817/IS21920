@@ -10,74 +10,84 @@ public class Empleado{
 	private String nombre;
 	private LocalDate fechaContratacion;
 	private boolean baja;
-	
-	public class FechaIncorrectaException extends Exception{}
-	
-	public Empleado(Categoria tipoEmpleado, String nombre, LocalDate fechaContratacion) throws FechaIncorrectaException {
+	private LocalDate today;
+
+	public class DatoIncorrectoException extends Exception{}
+
+	public Empleado(Categoria tipoEmpleado, String nombre, LocalDate fechaContratacion) throws DatoIncorrectoException {
 		this.tipoEmpleado=tipoEmpleado;
 		if(tipoEmpleado==null) {
 			throw new NullPointerException();
+		} else if(tipoEmpleado!=Categoria.DIRECTIVO&&tipoEmpleado!=Categoria.GESTOR&&tipoEmpleado!=Categoria.OBRERO) {
+			throw new DatoIncorrectoException();
 		}
 		this.nombre=nombre;
 		this.fechaContratacion=fechaContratacion;
-		
-		LocalDate today = LocalDate.now();
-		if(fechaContratacion.isAfter(today)) {
-			throw new FechaIncorrectaException();
-		}
-		
-		if(fechaContratacion.equals(null)) {
+
+		today = LocalDate.now();
+		if(fechaContratacion==null) {
 			throw new NullPointerException();
 		}
-		
+
+		if(fechaContratacion.isAfter(today)) {
+			throw new DatoIncorrectoException();
+		}
+
+
+
 		this.baja=false;
-	
-		
+
+
 	}
-	
+
 	public double sueldoBruto() {
 		double sueldoFinal=0;
 		switch(this.tipoEmpleado) {
-		
-		case OBRERO:
-			sueldoFinal+=1000;
-		case GESTOR:
-			sueldoFinal+=1200;
-		case DIRECTIVO:
-			sueldoFinal+=1500;
+			case OBRERO:
+				sueldoFinal+=1000;
+				break;
+			case GESTOR:
+				sueldoFinal+=1200;
+				break;
+			case DIRECTIVO:
+				sueldoFinal+=1500;
+				break;
+			
 		}
-		
-		
-		if(fechaContratacion.minusYears(5).getYear()>0) {
+
+
+		if(fechaContratacion.isBefore(today.minusYears(20))) {
+			sueldoFinal+=200;
+		}
+
+		else if(fechaContratacion.isBefore(today.minusYears(10))) {
+			sueldoFinal+=100;
+		}
+
+		else if(fechaContratacion.isBefore(today.minusYears(5))) {
 			sueldoFinal+=50;
 		}
 		
-		else if(fechaContratacion.minusYears(10).getYear()>0) {
-			sueldoFinal+=100;
-
+		if(baja) {
+			sueldoFinal*=0.75;
 		}
-		
-		else if(fechaContratacion.minusYears(20).getYear()>0) {
-			sueldoFinal+=200;
 
-		}
-		
 		return sueldoFinal;
 	}
-	
+
 	public void darDeAlta() {
 		this.baja=false;
 	}
 
-	
+
 	public void darDeBaja(){
 		this.baja=true;
 	}
-	
+
 	public boolean estaEnBaja() {
 		return baja;
 	}
 
-	
-	
+
+
 }
