@@ -21,8 +21,17 @@ public class ListaTest {
 	
 	@Test 
 	public void add() {
-		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>();
+		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>(5);
 		//CASO 1
+		try {
+			lista.add(5);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		assertTrue(lista.get(0)==5);
+		
+		//CASO 2
+		
 		try {
 			lista.add(3);
 		} catch (Exception e) {
@@ -31,81 +40,114 @@ public class ListaTest {
 		assertTrue(lista.get(0)==3);
 		
 		
-		//CASO 2
+		//CASO 3 
 		try {
-			lista.add(1);
-			lista.add(2);
-			lista.add(3);
-			
+			lista.add(4);
 		} catch (Exception e) {
 			fail("No debe lanzar excepcion");
 		}
-		assertTrue(lista.size()==3);
+		assertTrue(lista.get(1)==4);
 		
-		//CASO 3 (ERROR)
+		//CASO 4
 		try {
-			lista.add(null);
-			fail("No debería aceptarse el tipo de datos null");
-		}catch(Exception e) {
-
+			lista.add(-2);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
 		}
+		assertTrue(lista.get(0)==-2);
+		
+		//CASO 5
+		lista=new ListaOrdenadaAcotada<Integer>(0);
+		try {
+			lista.add(5);
+			fail("Debe lanzar excepcion");
+		} catch (Exception e) {	
+		}
+		
+		//CASO 6
+		lista=new ListaOrdenadaAcotada<Integer>(1);
+		try {
+			lista.add(5);
+			lista.add(5);
+			fail("Debe lanzar excepcion");
+		} catch (Exception e) {	
+		}
+		
+		
 	}
 	
 	@Test
 	public void remove() {
-		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>();
-		ListaOrdenadaAcotada<Integer> listaNull=null;
+		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>(6);
+		lista.add(1);
+		lista.add(2);
 		lista.add(3);
+		lista.add(4);
+		lista.add(5);
 		
-		//CASO 4
+		//CASO 7
 		try {
 			lista.remove(0);
 		} catch (Exception e) {
 			fail("No debe lanzar excepcion");
 		}
-		assertTrue(lista.size()==0);
+		assertTrue(lista.get(0)==2);
 		
-		//CASO 5 (ERROR)
+		//CASO 8
 		try {
-			lista.remove(-5);
-			fail("El indice no puede ser negativo");
+			lista.remove(1);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		assertTrue(lista.get(0)==2);
+
+		
+		//CASO 9
+		try {
+			lista.remove(1);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		assertTrue(lista.get(0)==2);
+		
+		//CASO 10
+		try {
+			lista.remove(0);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		assertTrue(lista.get(0)==5);
+		
+		//CASO 11
+		try {
+			lista.remove(-1);
+			fail("Debe lanzar excepcion");
 		} catch (Exception e) {
 		}
 		
-		//CASO 6 (ERROR)
+		//CASO 12
+		lista.clear();
 		try {
-			lista.remove(3);
-			fail("El indice no puede superar el numero de elementos");
+			lista.remove(0);
+			fail("Debe lanzar excepcion");
 		} catch (Exception e) {
 		}
 		
-		//CASO 7
+		//CASO 13
+		lista.add(1);
+		lista.add(2);
 		lista.add(3);
 		lista.add(4);
-		lista.add(5);;
 		try {
-			assertTrue(lista.size()==3);
-			lista.remove(0);
-			assertTrue(lista.size()==2);
-			lista.remove(0);
-			assertTrue(lista.size()==1);
-			lista.remove(0);
-			assertTrue(lista.size()==0);
-		} catch (Exception e) {
-			fail("El tamaño no es correcto");
-		}
-		
-		//CASO 8 (ERROR)
-		try {
-			lista.remove(0);
-			fail("La lista no deberia tener elementos");
+			lista.remove(4);
+			fail("Debe lanzar excepcion");
 		} catch (Exception e) {
 		}
 		
-		//CASO 9 (ERROR)
+		//CASO 14
 		try {
-			listaNull.remove(0);
-			fail("La lista esta a null, no debería poderse hacer operaciones");
+			lista.remove(8);
+			fail("Debe lanzar excepcion");
 		} catch (Exception e) {
 		}
 		
@@ -115,62 +157,56 @@ public class ListaTest {
 	@Test
 	public void get() {
 		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>();
-		ListaOrdenadaAcotada<Integer> listaNull=null;
+
+		lista.add(1);
+		lista.add(2);
 		lista.add(3);
+		lista.add(4);
+		lista.add(5);
 		
-		//CASO 10
+		//CASO 15
 		try {
-			lista.get(0);
+			assertTrue(lista.get(0)==1);
 		} catch (Exception e) {
 			fail("No debe lanzar excepcion");
 		}
-		assertTrue(lista.size()==1);
 		
-		//CASO 11 (ERROR)
+		
+		//CASO 16
+		lista.remove(0);
+		lista.remove(3);
 		try {
-			lista.get(-5);
-			fail("El indice no puede ser negativo");
+			assertTrue(lista.get(1)==3);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		
+		//CASO 17
+		try {
+			assertTrue(lista.get(2)==4);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		
+		//CASO 18
+		try {
+			assertTrue(lista.get(0)==2);
+		} catch (Exception e) {
+			fail("No debe lanzar excepcion");
+		}
+		
+		//CASO 19
+		try {
+			lista.get(-1);
+			fail("Indice erroneo");
 		} catch (Exception e) {
 		}
 		
-		//CASO 12 (ERROR)
-		try {
-			lista.get(3);
-			fail("El indice no puede superar el numero de elementos");
-		} catch (Exception e) {
-		}
-		
-		
-		//CASO 13
-		try {
-			lista.add(1);
-			lista.add(2);
-			lista.add(3);
-			assertTrue(lista.size()==3);
-			lista.get(0);
-			lista.remove(0);
-			assertTrue(lista.size()==2);
-			lista.get(0);
-			lista.remove(0);
-			assertTrue(lista.size()==1);
-			lista.get(0);
-			lista.remove(0);
-			assertTrue(lista.size()==0);
-		} catch (Exception e) {
-			fail("El tamaño no es correcto");
-		}
-		
-		//CASO 14 (ERROR)
+		//CASO 20
+		lista.clear();
 		try {
 			lista.get(0);
-			fail("La lista no deberia tener elementos");
-		} catch (Exception e) {
-		}
-		
-		//CASO 15 (ERROR)
-		try {
-			listaNull.get(0);
-			fail("La lista esta a null, no debería poderse hacer operaciones");
+			fail("La lista esta vacia, no debería poderse hacer operaciones");
 		} catch (Exception e) {
 		}
 		
@@ -180,23 +216,35 @@ public class ListaTest {
 	@Test
 	public void size() {
 		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>();
-		ListaOrdenadaAcotada<Integer> listaNull=null;
+
+		lista.add(1);
+		lista.add(2);
+		lista.add(3);
+		lista.add(4);
 		
-		//CASO 16
+		//CASO 21
 		try {
-			lista.add(3);
-			lista.add(1);
-			lista.add(4);
+			assertTrue(lista.size()==4);
 		} catch (Exception e) {
 			fail("El tamaño de la lista es incorrecto");
 		}
-		assertTrue(lista.size()==3);
 		
-		//CASO 17 (ERROR)
+		//CASO 22
+		lista.clear();
 		try {
-			listaNull.get(0);
-			fail("La lista esta a null, no debería poderse hacer operaciones");
+			assertTrue(lista.size()==0);
 		} catch (Exception e) {
+			fail("Tamaño incorrecto");
+
+		}
+		
+		//CASO 23
+		lista.add(2);
+		try {
+			assertTrue(lista.size()==1);
+			
+		} catch (Exception e) {
+			fail("Tamaño incorrecto");
 		}
 
 	}
@@ -204,28 +252,34 @@ public class ListaTest {
 	@Test
 	public void clear() {
 		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>();
-		ListaOrdenadaAcotada<Integer> listaNull=null;
 		
-		//CASO 18
+		lista.add(1);
+		lista.add(2);
+		lista.add(3);
+		lista.add(4);
 		
+		//CASO 24
 		try {
-			lista.add(5);
-			lista.add(4);
-			lista.add(3);
-			lista.add(2);
-			lista.add(1);
 			lista.clear();
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Error registrado cuando no debería haberlo");	
+			fail("Tamaño incorrecto");
 		}
-		assertTrue(lista.size()==0);
 		
-		//CASO 19 (ERROR)
+		//CASO 25
 		try {
-			listaNull.get(0);
-			fail("La lista esta a null, no debería poderse hacer operaciones");
+			lista.clear();
+			assertTrue(lista.size()==0);
 		} catch (Exception e) {
+			fail("Tamaño incorrecto");
+		}
+		
+		//CASO 26
+		lista.add(2);
+		try {
+			lista.clear();
+			assertTrue(lista.size()==0);
+		} catch (Exception e) {
+			fail("Tamaño incorrecto");
 		}
 
 	}

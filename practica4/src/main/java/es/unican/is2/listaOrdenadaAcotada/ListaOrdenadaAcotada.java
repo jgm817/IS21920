@@ -57,5 +57,15 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaAcot
     public void clear() {
         this.ultimo = -1;
     }
+    
+    @Override
+    public String toString() {
+        String r = "[";
+        for(E e: lista) {
+            r+=e+",";
+        }
+        r+="]";
+        return r;
+    }
 }
 
