@@ -21,10 +21,13 @@ public class ListaTest {
 	
 	@Test 
 	public void add() {
-		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>();
+		ListaOrdenadaAcotada<Integer> lista=new ListaOrdenadaAcotada<Integer>(5);
 		//CASO 1
 		try {
+			System.out.println(lista);
+
 			lista.add(3);
+			System.out.println(lista);
 		} catch (Exception e) {
 			fail("No debe lanzar excepcion");
 		}
@@ -33,14 +36,17 @@ public class ListaTest {
 		
 		//CASO 2
 		try {
-			lista.add(1);
+			lista.add(51);
+			System.out.println(lista);
 			lista.add(2);
-			lista.add(3);
-			
+			System.out.println(lista);
+			lista.add(-84);
+			System.out.println(lista);
+
 		} catch (Exception e) {
 			fail("No debe lanzar excepcion");
 		}
-		assertTrue(lista.size()==3);
+		assertTrue(lista.size()==4);
 		
 		//CASO 3 (ERROR)
 		try {

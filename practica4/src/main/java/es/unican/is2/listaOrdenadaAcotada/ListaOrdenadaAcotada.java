@@ -31,7 +31,7 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaAcot
                 indice++;
             }
         }
-        for (int i = this.ultimo; i > indice; --i) {
+        for (int i = this.ultimo; i >= indice; --i) {
             this.lista[i + 1] = this.lista[i];
         }
         this.lista[indice] = elemento;
@@ -56,6 +56,16 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaAcot
     
     public void clear() {
         this.ultimo = -1;
+    }
+    
+    @Override
+    public String toString() {
+    	String r = "[";
+    	for(E e: lista) {
+    		r+=e+",";
+    	}
+    	r+="]";
+    	return r;
     }
 }
 
