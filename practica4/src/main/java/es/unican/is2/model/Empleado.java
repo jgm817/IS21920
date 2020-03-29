@@ -52,7 +52,6 @@ public class Empleado{
 			case DIRECTIVO:
 				sueldoFinal+=1500;
 				break;
-			
 		}
 
 
