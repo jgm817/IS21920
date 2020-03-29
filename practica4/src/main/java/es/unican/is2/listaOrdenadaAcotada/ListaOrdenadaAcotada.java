@@ -60,12 +60,12 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaAcot
     
     @Override
     public String toString() {
-        String r = "[";
-        for(E e: lista) {
-            r+=e+",";
-        }
-        r+="]";
-        return r;
+    	String r = "[";
+    	for(E e: lista) {
+    		r+=e+",";
+    	}
+    	r+="]";
+    	return r;
     }
 }
 
