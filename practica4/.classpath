@@ -24,5 +24,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/J7223ai/Desktop/fest-swing-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/J7223ai/Desktop/fest-assert-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/J7223ai/Desktop/fest-reflect-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/J7223ai/Desktop/fest-util-1.1.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
