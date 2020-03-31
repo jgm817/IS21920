@@ -64,7 +64,7 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaAcot
     	for(E e: lista) {
     		r+=e+",";
     	}
-    	r+="]";
+    	r+="] Ult: "+ultimo;
     	return r;
     }
 }
